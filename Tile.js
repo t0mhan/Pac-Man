@@ -101,7 +101,6 @@ Tile.prototype.update = function() {
             var bD = dist(b.x, b.y, pacman.x, pacman.y);
             return aD - bD;
         });
-
         if (this.behavior === 0) {	// if they're agressive
             for (var i = 0; i < possibleMoves.length; i++) {
                 if (this.move(possibleMoves[i].x, possibleMoves[i].y, false)) { // attempt to move
