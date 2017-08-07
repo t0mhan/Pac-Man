@@ -10,7 +10,7 @@ const TYPES = [
     "PACMAN"
 ];
 
-const TILE_SPEED = 0.2; // speed of tile's movement
+const TILE_SPEED = 0.15; // speed of tile's movement
 const DIMENSIONS = 20;	// size of field
 const SIZE = 25;	// size of each tile
 const HALF_SIZE = SIZE / 2;
@@ -29,7 +29,7 @@ function Tile(x, y, type, behavior) {
     this.destination = (-1, -1);
     this.moving = false;
     this.intact = true;
-    this.speed = 0.2;
+    this.speed = 0.15;
     this.behavior = behavior; // GHOSTs only;	0 = agressive, 1 = nonchalant
 }
 
