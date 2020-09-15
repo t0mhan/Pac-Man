@@ -1,6 +1,6 @@
 /**
-	* all different types of tiles
-	*/
+ * all different types of tiles
+ */
 const TYPES = [
     "BARRIER",
     "BISCUIT",
@@ -10,9 +10,9 @@ const TYPES = [
     "PACMAN"
 ];
 
-const TILE_SPEED = 0.15; // speed of tile's movement
-const DIMENSIONS = 20;	// size of field
-const SIZE = 25;	// size of each tile
+const TILE_SPEED = 0.10; // speed of tile's movement
+const DIMENSIONS = 20; // size of field
+const SIZE = 25; // size of each tile
 const HALF_SIZE = SIZE / 2;
 const THIRD_SIZE = SIZE / 3;
 const QUARTER_SIZE = SIZE / 4;
@@ -65,15 +65,15 @@ Tile.prototype.update = function() {
         if (destinationTile.intact) {
             switch (destinationTile.type) {
                 case "BISCUIT":
-                    score++;	// worth 1 point
+                    score++; // worth 1 point
                     destinationTile.intact = false;
                     break;
 
                 case "CHERRY":
-                    score += 10;	// worth 10 points
+                    score += 10; // worth 10 points
                     destinationTile.intact = false;
                     break;
-                                        }
+            }
         }
 
         if (score == endScore) // check if Pac-man has won
@@ -89,19 +89,19 @@ Tile.prototype.update = function() {
             return;
         /* relative possible movements */
         var possibleMoves = [
-            getTile(this.x - 1, this.y),	// left
-            getTile(this.x + 1, this.y),	// right
-            getTile(this.x, this.y - 1),	// top
-            getTile(this.x, this.y + 1),	// bottom
+            getTile(this.x - 1, this.y), // left
+            getTile(this.x + 1, this.y), // right
+            getTile(this.x, this.y - 1), // top
+            getTile(this.x, this.y + 1), // bottom
         ];
 
         /* sort by distance from Pac-man */
-        possibleMoves.sort(function (a, b) {
+        possibleMoves.sort(function(a, b) {
             var aD = dist(a.x, a.y, pacman.x, pacman.y);
             var bD = dist(b.x, b.y, pacman.x, pacman.y);
             return aD - bD;
         });
-        if (this.behavior === 0) {	// if they're agressive
+        if (this.behavior === 0) { // if they're agressive
             for (var i = 0; i < possibleMoves.length; i++) {
                 if (this.move(possibleMoves[i].x, possibleMoves[i].y, false)) { // attempt to move
                     break;
@@ -159,7 +159,7 @@ Tile.prototype.draw = function() {
             fill("#FFFF33");
             ellipse(this.x * SIZE + QUARTER_SIZE, this.y * SIZE + QUARTER_SIZE, HALF_SIZE);
             break;
-                     }
+    }
 };
 
 /**
@@ -180,8 +180,8 @@ Tile.prototype.move = function(x, y, relative) {
         return false;
     var destinationTile = getTile(destinationX, destinationY);
     var type = destinationTile.type;
-    if ((type == "BARRIER" && this.type != "BARRIER") || 	// only certain tiles may
-        (type == "GHOST" && this.type == "GHOST")) 				// move to other certain tiles
+    if ((type == "BARRIER" && this.type != "BARRIER") || // only certain tiles may
+        (type == "GHOST" && this.type == "GHOST")) // move to other certain tiles
         return false;
     this.moving = true; // begin movement next update
     this.destination = createVector(destinationX, destinationY);
